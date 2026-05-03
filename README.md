@@ -16,3 +16,18 @@ ansible -i inventory all -m "shell" -a "touch devopsclass"
 #  Inventory file (grouping servers using syntax [$server_type] )
 # The below command will install and start nginx in target servers
 ansible -i inventory first-playbook.yml
+
+# If we use -vvv[Verbose] in ansible playbook command we can see the logs for debugging
+ansible -vvv -i inventory first-playbook.yml
+
+# Ansible Roles
+# Roles are used to write complex ansible playbooks. It will make the process easier
+# For example if we want to configure k8s cluster where it has following tasks
+# Create 3 EC2 instances in AWS
+# 1 EC2 for master node
+# 2 EC2's for worker nodes
+# It need lot of other tasks like secrets, configmaps etc,.
+# So writing playbook is difficult for that we will got for roles.
+# By executing following command it will create a folder structure where it will contain sub folders named templates,files,tasks,meta,handlers,tests,vars,defaults and readme file
+# command: 
+ansible-galaxy role init kubernetes
