@@ -1,0 +1,21 @@
+---
+- name: Install common packaages
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install packages on Debrian
+      apt:
+        name:
+          -git
+          -curl
+        state: present
+    when: ansible_os_family == "Debrian"
+
+  - name: Install packages on RedHat
+    yum:
+      name:
+        -git
+        -curl
+      state: present
+    when: ansible_os_family == "RedHat"
